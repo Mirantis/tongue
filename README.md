@@ -37,17 +37,17 @@ The tongue-update.sh script will take care of downloading the pages for you whil
 # Practical examples:<br>
 Search for multiple e-books/authors:<br>
 ```
-tongue -a '\*Sebastian\*' -s 'system wide trusted certificate'
+tongue -a '*Sebastian*' -s 'system wide trusted certificate'
 ```
 Search only on ubuntu 16.x documentation pages:<br>
 ```
-tongue -u '\*16\*' -s 'system wide trusted certificate'
+tongue -u '*16*' -s 'system wide trusted certificate'
 ```
 Search for nova on all openstack documentation:<br>
 ```
-tongue -e '\*' -s 'nova'
+tongue -e '*' -s 'nova'
 ```
 Search for 'ocfs2' or 'nfs' on systemd documentation:<br>
 ```
-tongue -y '\*' -s ocfs2|nfs<br>
+tongue -y '*' -s ocfs2|nfs<br>
 ```
