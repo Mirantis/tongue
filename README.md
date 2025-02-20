@@ -5,10 +5,11 @@ The tongue-update.sh script will take care of downloading the pages for you whil
 <br>
 # Installation and usage:<br>
 1 - Download the tongue-update.sh and tongue.sh scripts<br>
-2 - Set execution permissions to both scripts: "sudo chmod a+x tongue-update.sh ; sudo chmod a+x tongue.sh". You will also have to set your username for "GERRITUSER" variable on tongue-update script. Its also necessary to change variable "CALIBREPATH" on tongue script, pointing to a place in your machine where you keep pdf files<br>
-3 - Copy the scripts to /usr/bin with: "sudo cp tongue-update.sh /usr/bin/tongue-update ; sudo cp tongue.sh /usr/bin/tongue"<br>
-4 - Run "tongue-update" command first to download the documentation files. By default, these files are saved in "$HOME/Downloads/tongue". You can change that also by editing the script before the first run.<br>
-5 - After the download is done, run tongue to start searching.<br>
+2 - Set execution permissions to both scripts: ```sudo chmod a+x tongue-update.sh ; sudo chmod a+x tongue.sh```<br>
+You will also have to set your username for "GERRITUSER" variable on tongue-update script. Its also necessary to change variable "CALIBREPATH" on tongue script, pointing to a place in your machine where you keep pdf files<br>
+3 - Copy the scripts to /usr/bin with: ```sudo cp tongue-update.sh /usr/bin/tongue-update ; sudo cp tongue.sh /usr/bin/tongue```<br>
+4 - By default, these files are saved in "$HOME/Downloads/tongue". You can change that also by editing the variable "DOCUMENTPATH" on tongue-update script. Once you have all set, run ``` tongue-update ``` command to download the documentation. <br>
+5 - After the download is done, run tongue to start searching. Run ```tongue -h``` for a list of options<br>
 6 - A list of html files will be displayed with the terms you searched for. These are paged with "less" command. Do Ctrl+Click on the links to open them in your webrowser. Once you find what you need, open the page you downloaded with your browser (i suggest using w3m if you want to open that from the terminal<br>
 7 - Enjoy<br>
 <br>
