@@ -1,13 +1,13 @@
 # About the project:<br>
 This is a local documentation search engine based on official documentation releases of multiple linux projects. <br><br>
-The idea is to make a local offline copy of all available documentation and after use grep to search for what you are looking for. The advantage here is that you can search on multiple documentation pages for different projects at the same time. Some sort of "offline documentation search engine running on CMD".<br><br>
+The idea is to make a local offline copy of all available documentation and after use grep to search for what you are looking for. Some sort of "offline documentation search engine running on CMD".<br><br>
 The tongue-update.sh script will take care of downloading the pages for you while tongue.sh will prompt you with what is needed to perform the search you want. Note that the search is performed through html and pdf files<br>
 <br>
 # Installation and usage:<br>
 1 - Download the tongue-update.sh and tongue.sh scripts<br>
 2 - Set execution permissions to both scripts: "sudo chmod a+x tongue-update.sh ; sudo chmod a+x tongue.sh"<br>
 3 - Copy the scripts to /usr/bin with: "sudo cp tongue-update.sh /usr/bin/tongue-update ; sudo cp tongue.sh /usr/bin/tongue"<br>
-4 - Run "tongue-update" command first to download the documentation files. By default, these files are saved in "$HOME/Downloads/tongue". You can change that also by editing the script before the first run. 
+4 - Run "tongue-update" command first to download the documentation files. By default, these files are saved in "$HOME/Downloads/tongue". You can change that also by editing the script before the first run.<br>
 5 - After the download is done, run tongue to start searching.<br>
 6 - A list of html files will be displayed with the terms you searched for. These are paged with "less" command. Do Ctrl+Click on the links to open them in your webrowser. Once you find what you need, open the page you downloaded with your browser (i suggest using w3m if you want to open that from the terminal<br>
 7 - Enjoy<br>
