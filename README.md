@@ -5,14 +5,12 @@ The tongue-update.sh script will take care of downloading the pages for you whil
 <br>
 # Installation and usage:<br>
 1 - Download the tongue-update.sh and tongue.sh scripts<br>
-2 - Set execution permissions to both scripts: "sudo chmod a+x tongue-update.sh ; sudo chmod a+x tongue.sh"<br>
+2 - Set execution permissions to both scripts: "sudo chmod a+x tongue-update.sh ; sudo chmod a+x tongue.sh". You will also have to set your username for "GERRITUSER" variable on tongue-update script. Its also necessary to change variable "CALIBREPATH" on tongue script, pointing to a place in your machine where you keep pdf files<br>
 3 - Copy the scripts to /usr/bin with: "sudo cp tongue-update.sh /usr/bin/tongue-update ; sudo cp tongue.sh /usr/bin/tongue"<br>
 4 - Run "tongue-update" command first to download the documentation files. By default, these files are saved in "$HOME/Downloads/tongue". You can change that also by editing the script before the first run.<br>
 5 - After the download is done, run tongue to start searching.<br>
 6 - A list of html files will be displayed with the terms you searched for. These are paged with "less" command. Do Ctrl+Click on the links to open them in your webrowser. Once you find what you need, open the page you downloaded with your browser (i suggest using w3m if you want to open that from the terminal<br>
 7 - Enjoy<br>
-<br>
-# Settings:<br>
 <br>
 # Option list:<br>
 -a, --calibre = Search on Calibre library<br>
@@ -37,19 +35,19 @@ The tongue-update.sh script will take care of downloading the pages for you whil
 -y, --systemd = Search on systemd official documentation<br>
  <br>
 # Practical examples:<br>
-Search for multiple e-books/authors:
+Search for multiple e-books/authors:<br>
 ```
 tongue -a '\*Sebastian\*' -s 'system wide trusted certificate'
 ```
-Search only on ubuntu 16.x documentation pages:
+Search only on ubuntu 16.x documentation pages:<br>
 ```
 tongue -u '\*16\*' -s 'system wide trusted certificate'
 ```
-Search for nova on all openstack documentation:
+Search for nova on all openstack documentation:<br>
 ```
 tongue -e '\*' -s 'nova'
 ```
-Search for 'ocfs2' or 'nfs' on systemd documentation:
+Search for 'ocfs2' or 'nfs' on systemd documentation:<br>
 ```
 tongue -y '\*' -s ocfs2|nfs<br>
 ```
