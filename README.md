@@ -12,10 +12,7 @@ The tongue-update.sh script will take care of downloading the pages for you whil
 6 - A list of html files will be displayed with the terms you searched for. These are paged with "less" command. Do Ctrl+Click on the links to open them in your webrowser. Once you find what you need, open the page you downloaded with your browser (i suggest using w3m if you want to open that from the terminal<br>
 7 - Enjoy<br>
 <br>
-# Examples:<br>
-List documentations or ask for help: tongue -h or -l<br>
-Ubuntu Documentation search: tongue -u DOCUMENTATION -s SEARCH_STRING (options: -i for case-sensitive search)<br>
-Kubernetes documentation: tongue -k RELEASENOTE -s SEARCH_STRING (options: -i for case-sensitive search)<br>
+# Settings:<br>
 <br>
 # Option list:<br>
 -a, --calibre = Search on Calibre library<br>
@@ -40,8 +37,19 @@ Kubernetes documentation: tongue -k RELEASENOTE -s SEARCH_STRING (options: -i fo
 -y, --systemd = Search on systemd official documentation<br>
  <br>
 # Practical examples:<br>
-Search for multiple e-books/authors: tongue -a '\*Sebastian\*' -s 'system wide trusted certificate'<br>
-Search only on ubuntu 16.x documentation pages: tongue -u '\*16\*' -s 'system wide trusted certificate'<br>
-Search for nova on all openstack documentation: tongue -e '\*' -s 'nova'<br>
-Search for 'ocfs2' or 'nfs' on systemd documentation: tongue -y '\*' -s ocfs2|nfs<br>
-<br>
+Search for multiple e-books/authors:
+```
+tongue -a '\*Sebastian\*' -s 'system wide trusted certificate'
+```
+Search only on ubuntu 16.x documentation pages:
+```
+tongue -u '\*16\*' -s 'system wide trusted certificate'
+```
+Search for nova on all openstack documentation:
+```
+tongue -e '\*' -s 'nova'
+```
+Search for 'ocfs2' or 'nfs' on systemd documentation:
+```
+tongue -y '\*' -s ocfs2|nfs<br>
+```
