@@ -1,6 +1,6 @@
 # About the project:<br>
 This is a local documentation search engine based on official documentation releases of multiple linux projects. <br><br>
-The idea is to make a local offline copy of all available documentation and after use grep to search for what you are looking for. Some sort of "offline documentation search engine running on CMD".<br><br>
+The idea is to make a local offline copy of all available documentation and after use grep to search for what you are looking for. Some sort of "offline documentation search engine running on CLI".<br><br>
 The tongue-update.sh script will take care of downloading the pages for you while tongue.sh will prompt you with what is needed to perform the search you want. Note that the search is performed through html and pdf files<br>
 <br>
 # Installation and usage:<br>
