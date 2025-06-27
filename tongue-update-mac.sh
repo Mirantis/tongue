@@ -18,7 +18,7 @@ fi
 #Mirantis Documentation
 rm -rf $DOCUMENTPATH/docs.mirantis.com
 git init $DOCUMENTPATH/docs.mirantis.com/mcp/q4-18
-git -C $DOCUMENTPATH/docs.mirantis.com/mcp/q4-18 clone "ssh://gerrit.mcp.mirantis.com:29418/mcp/mcp-docs"
+git -C $DOCUMENTPATH/docs.mirantis.com/mcp/q4-18 clone "ssh://$GERRITUSER@gerrit.mcp.mirantis.com:29418/mcp/mcp-docs"
 rm -rf $DOCUMENTPATH/docs.mirantis.com/mcp/q4-18/mcp-docs/doc/mcp-dev-specs
 rm -rf $DOCUMENTPATH/docs.mirantis.com/mcp/q4-18/mcp-docs/doc/common
 
