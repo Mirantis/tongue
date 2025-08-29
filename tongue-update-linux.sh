@@ -2,22 +2,21 @@
 DOCUMENTPATH=/home/pvieira/Downloads/tongue
 GERRITUSER=pvieira
 
-if ! command -v html2text 2>&1 >/dev/null
-then
-    echo "the command html2text could not be found. Installing"
-    sudo dnf install html2text -y
-    sudo apt-get install html2text -y
-    exit 1
+if ! command -v html2text 2>&1 >/dev/null; then
+  echo "the command html2text could not be found. Installing"
+  sudo dnf install html2text -y
+  sudo apt-get install html2text -y
+  exit 1
 fi
-if ! command -v git 2>&1 >/dev/null
-then
-    echo "the command git could not be found. Installing"
-    sudo dnf install git -y
-    sudo apt-get install git -y
-    exit 1
+if ! command -v git 2>&1 >/dev/null; then
+  echo "the command git could not be found. Installing"
+  sudo dnf install git -y
+  sudo apt-get install git -y
+  exit 1
 fi
 
 #Mirantis Documentation
+git config --global init.defaultBranch master
 rm -rf $DOCUMENTPATH/docs.mirantis.com
 git init $DOCUMENTPATH/docs.mirantis.com/mcp/q4-18
 git -C $DOCUMENTPATH/docs.mirantis.com/mcp/q4-18 clone "ssh://$GERRITUSER@gerrit.mcp.mirantis.com:29418/mcp/mcp-docs"
@@ -60,6 +59,10 @@ git init $DOCUMENTPATH/docs.mirantis.com/mcr/20.10
 git -C $DOCUMENTPATH/docs.mirantis.com/mcr/20.10 clone -b 20.10 "ssh://$GERRITUSER@gerrit.mcp.mirantis.com:29418/docs/mcr-docs"
 git init $DOCUMENTPATH/docs.mirantis.com/mcr/19.03
 git -C $DOCUMENTPATH/docs.mirantis.com/mcr/19.03 clone -b 19.03 "ssh://$GERRITUSER@gerrit.mcp.mirantis.com:29418/docs/mcr-docs"
+
+git init $DOCUMENTPATH/github.com/k0rdent/docs
+git -C $DOCUMENTPATH/github.com/k0rdent/docs reset --hard
+git -C $DOCUMENTPATH/github.com/k0rdent/docs pull https://github.com/k0rdent/docs.git
 
 #UBUNTU DOCUMENTATION
 git init $DOCUMENTPATH/documentation.ubuntu.com/server
@@ -232,10 +235,10 @@ git -C $DOCUMENTPATH/prometheus.io/alertmanager pull https://github.com/promethe
 mv $DOCUMENTPATH/prometheus.io/alertmanager/docs/* $DOCUMENTPATH/prometheus.io/content/docs/alerting/
 
 #TUNGSTENFABRIC
-git init $DOCUMENTPATH/github.com/tungstenfabric/docs
-git -C $DOCUMENTPATH/github.com/tungstenfabric/docs reset --hard
-git -C $DOCUMENTPATH/github.com/tungstenfabric/docs pull https://github.com/tungstenfabric/docs.git
-rm -rf $DOCUMENTPATH/github.com/tungstenfabric/docs/docsTools
+git init $DOCUMENTPATH/github.com/OpenSDN-io/docs
+git -C $DOCUMENTPATH/github.com/OpenSDN-io/docs reset --hard
+git -C $DOCUMENTPATH/github.com/OpenSDN-io/docs pull https://github.com/OpenSDN-io/docs.git
+rm -rf $DOCUMENTPATH/github.com/OpenSDN-io/docs/docsTools
 
 #MARIADB
 mkdir $DOCUMENTPATH/mariadb
@@ -267,3 +270,4 @@ find $DOCUMENTPATH/* -type f -name "*.mdx" -exec sed -i -e "s/<[^>]*>//g" -e "/^
 find $DOCUMENTPATH/* -type f -name "*.rst" -exec sed -i -e "s/<[^>]*>//g" -e "/^$/d" {} \;
 find $DOCUMENTPATH/* -type f -name "*.md0" -exec rm {} \;
 echo "Update completed."
+
