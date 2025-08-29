@@ -20,6 +20,7 @@ You will also have to set your username for "GERRITUSER" variable on tongue-upda
 -d, --docker-enterprise = Search on docker enterprise documentation<br>
 -e, --openstack = Search on openstack official documentation<br>
 -f, --prometheus = Search on prometheus documentation<br>
+-g, --k0rdent = Search on k0rdent documentation
 -h, --help = Display a list of options to chose from<br>
 -i, --case-sensitive = Searches are case sensitive.<br>
 -j, --calico = Search on Calico documentation<br>
