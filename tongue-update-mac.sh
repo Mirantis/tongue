@@ -65,24 +65,26 @@ git init $DOCUMENTPATH/github.com/k0rdent/docs
 git -C $DOCUMENTPATH/github.com/k0rdent/docs reset --hard
 git -C $DOCUMENTPATH/github.com/k0rdent/docs pull https://github.com/k0rdent/docs.git
 
+DOCUMENTPATH=/home/pvieira/Downloads/tongue
 OUTPUT_FILE="$DOCUMENTPATH/mirantis_all_docs.rst"
 > "$OUTPUT_FILE"
-find "$DOCUMENTPATH" -type f -name "*.rst" -not -wholename "$OUTPUT_FILE" -exec sh -c '
-  out_file="$1"
-  shift
+find "$DOCUMENTPATH/docs.mirantis.com" -type f -name "*.rst" -exec sh -c '
+  doc_path="$1"
+  out_file="$2"
+  shift 2
   for file; do
-    printf "\n\n========================================\nFILE: %s\n========================================\n\n" "$file" >> "$out_file"
+    echo -e "\n\n========================================\nFILE: $file\n========================================\n" >> "$out_file"
     cat "$file" >> "$out_file"
   done
-' _ "$OUTPUT_FILE" {} +
+' _ "$DOCUMENTPATH" "$OUTPUT_FILE" {} +
 
 STAGING_DIR="$DOCUMENTPATH/mirantis_split_docs"
+rm -rf $STAGING_DIR
 mkdir -p "$STAGING_DIR"
-# Copy all .rst files, prefixing the file name with its parent folder name for clarity
-find "$DOCUMENTPATH" -type f -name "*.rst" -not -wholename "$OUTPUT_FILE" | while read -r file; do
-    # Extract relative path to create a unique filename
-    rel_name=$(echo "$file" | sed "s|$DOCUMENTPATH/||g" | tr '/' '_')
-    cp "$file" "$STAGING_DIR/$rel_name"
+find "$DOCUMENTPATH/docs.mirantis.com" -type f -name "*.rst" | while read -r file; do
+    rel_name=$(echo "$file" | sed "s|$DOCUMENTPATH\/docs\.mirantis\.com||g" | tr '/' '_')
+    new_name=$(echo "$rel_name" | sed 's/\(source\|doc\|msr-docs\|mirantis\)_.\?//g; s/ //g')
+    cp "$file" "$STAGING_DIR/$new_name"
 done
 
 #UBUNTU DOCUMENTATION
