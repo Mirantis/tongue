@@ -67,7 +67,7 @@ git -C $DOCUMENTPATH/github.com/k0rdent/docs pull https://github.com/k0rdent/doc
 
 OUTPUT_FILE="$DOCUMENTPATH/mirantis_all_docs.rst"
 > "$OUTPUT_FILE"
-find "$DOCUMENTPATH/docs.mirantis.com" -type f -name "*.rst" -exec sh -c '
+find "$DOCUMENTPATH" -type f -name "*.rst" -exec sh -c '
   out_file="$1"
   shift
   for file; do
@@ -79,7 +79,7 @@ find "$DOCUMENTPATH/docs.mirantis.com" -type f -name "*.rst" -exec sh -c '
 STAGING_DIR="$DOCUMENTPATH/mirantis_split_docs"
 mkdir -p "$STAGING_DIR"
 # Copy all .rst files, prefixing the file name with its parent folder name for clarity
-find "$DOCUMENTPATH" -type f -name "*.rst" -not -name "mirantis_all_docs.rst" | while read -r file; do
+find "$DOCUMENTPATH" -type f -name "*.rst" -not -name "$OUTPUT_FILE" | while read -r file; do
     # Extract relative path to create a unique filename
     rel_name=$(echo "$file" | sed "s|$DOCUMENTPATH/||g" | tr '/' '_')
     cp "$file" "$STAGING_DIR/$rel_name"
