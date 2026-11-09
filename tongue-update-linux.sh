@@ -70,7 +70,7 @@ git -C $DOCUMENTPATH/github.com/k0rdent/docs pull https://github.com/k0rdent/doc
 
 OUTPUT_FILE="$DOCUMENTPATH/mirantis_all_docs.rst"
 > "$OUTPUT_FILE"
-find "$DOCUMENTPATH/docs.mirantis.com" -type f -name "*.rst" -exec sh -c '
+find "$DOCUMENTPATH" -type f -name "*.rst" -exec sh -c '
   doc_path="$1"
   out_file="$2"
   shift 2
