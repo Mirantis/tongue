@@ -67,12 +67,18 @@ git init $DOCUMENTPATH/github.com/k0rdent/docs
 git -C $DOCUMENTPATH/github.com/k0rdent/docs reset --hard
 git -C $DOCUMENTPATH/github.com/k0rdent/docs pull https://github.com/k0rdent/docs.git
 
-find $DOCUMENTPATH/docs.mirantis.com -type f -name "*.rst" -exec sh -c '
+
+OUTPUT_FILE="$DOCUMENTPATH/mirantis_all_docs.rst"
+> "$OUTPUT_FILE"
+find "$DOCUMENTPATH/docs.mirantis.com" -type f -name "*.rst" -exec sh -c '
+  doc_path="$1"
+  out_file="$2"
+  shift 2
   for file; do
-    echo -e "\n\n========================================\nFILE: $file\n========================================\n" >> mirantis_all_docs.rst
-    cat "$file" >> $DOCUMENTPATH/docs.mirantis.com/mirantis_all_docs.rst
+    echo -e "\n\n========================================\nFILE: $file\n========================================\n" >> "$out_file"
+    cat "$file" >> "$out_file"
   done
-' _ {} +
+' _ "$DOCUMENTPATH" "$OUTPUT_FILE" {} +
 
 #UBUNTU DOCUMENTATION
 git init $DOCUMENTPATH/documentation.ubuntu.com/server
