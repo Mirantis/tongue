@@ -1,6 +1,9 @@
 #!/bin/bash
 DOCUMENTPATH=/home/pvieira/Downloads/tongue
 GERRITUSER=pvieira
+SSH_KEY=~/.ssh/BlackShark-id_rsa
+
+export GIT_SSH_COMMAND="ssh -i $SSH_KEY -o StrictHostKeyChecking=accept-new"
 
 if ! command -v html2text 2>&1 >/dev/null; then
   echo "the command html2text could not be found. Installing"
@@ -63,6 +66,13 @@ git -C $DOCUMENTPATH/docs.mirantis.com/mcr/19.03 clone -b 19.03 "ssh://$GERRITUS
 git init $DOCUMENTPATH/github.com/k0rdent/docs
 git -C $DOCUMENTPATH/github.com/k0rdent/docs reset --hard
 git -C $DOCUMENTPATH/github.com/k0rdent/docs pull https://github.com/k0rdent/docs.git
+
+find $DOCUMENTPATH/docs.mirantis.com -type f -name "*.rst" -exec sh -c '
+  for file; do
+    echo -e "\n\n========================================\nFILE: $file\n========================================\n" >> mirantis_all_docs.rst
+    cat "$file" >> $DOCUMENTPATH/docs.mirantis.com/mirantis_all_docs.rst
+  done
+' _ {} +
 
 #UBUNTU DOCUMENTATION
 git init $DOCUMENTPATH/documentation.ubuntu.com/server
@@ -270,4 +280,3 @@ find $DOCUMENTPATH/* -type f -name "*.mdx" -exec sed -i -e "s/<[^>]*>//g" -e "/^
 find $DOCUMENTPATH/* -type f -name "*.rst" -exec sed -i -e "s/<[^>]*>//g" -e "/^$/d" {} \;
 find $DOCUMENTPATH/* -type f -name "*.md0" -exec rm {} \;
 echo "Update completed."
-
