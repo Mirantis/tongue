@@ -76,6 +76,15 @@ find "$DOCUMENTPATH/docs.mirantis.com" -type f -name "*.rst" -exec sh -c '
   done
 ' _ "$OUTPUT_FILE" {} +
 
+STAGING_DIR="$DOCUMENTPATH/mirantis_split_docs"
+mkdir -p "$STAGING_DIR"
+# Copy all .rst files, prefixing the file name with its parent folder name for clarity
+find "$DOCUMENTPATH" -type f -name "*.rst" | while read -r file; do
+    # Extract relative path to create a unique filename
+    rel_name=$(echo "$file" | sed "s|$DOCUMENTPATH/||g" | tr '/' '_')
+    cp "$file" "$STAGING_DIR/$rel_name"
+done
+
 #UBUNTU DOCUMENTATION
 git init $DOCUMENTPATH/documentation.ubuntu.com/server
 #git -C $DOCUMENTPATH/documentation.ubuntu.com sparse-checkout set server/
